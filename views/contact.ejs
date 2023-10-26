@@ -1,72 +1,83 @@
 <header class="contact-header">
-    <h1>Contact Us</h1>
+  <h1>Contact Us</h1>
 </header>
 <div class="contact-container">
-    <h2 class="contact-subheading">Contact Information</h2>
-    <form class="contact-form" action='/dataContact' method="post">
-        <div class="contact-input">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div class="contact-input">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="contact-input">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-        </div>
-        <button class="contact-button" type="submit">Submit</button>
+  <div class="container">
+    <form id="contact-form" action="/dataContact" method="post">
+      <label for="name">First Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name.." />
+
+      <label for="email">Email</label>
+      <input type="email" id="lname" name="email" placeholder="Your Email.." />
+
+      <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+        <option value="india">INDIA</option>
+      </select>
+
+      <label for="subject">Message</label>
+      <textarea
+        id="subject"
+        name="message"
+        placeholder="Write something.."
+        style="height: 200px"
+      ></textarea>
+
+      <input type="submit" value="Submit" />
     </form>
+  </div>
+
+  <div class="footerData">
     <div id="map" class="contact-map">
-        <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62965.202358754315!2d76.76853378399312!3d9.480421840530154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0647d31a38cdc3%3A0x903ee3d8030699e9!2sErumeli%2C%20Kerala!5e0!3m2!1sen!2sin!4v1698310581911!5m2!1sen!2sin" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <!-- Google Map will be embedded here -->
-        <!-- You need to include the Google Maps API to display the map -->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31482.604410365642!2d76.82175567163885!3d9.480386628242558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0647d31a38cdc3%3A0x903ee3d8030699e9!2sErumeli%2C%20Kerala!5e0!3m2!1sen!2sin!4v1698319782269!5m2!1sen!2sin"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify@1.9.3/dist/toastify.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#contact-form").submit(function (e) {
+          e.preventDefault();
+
+          var formData = $(this).serialize();
+
+          console.log(formData);
+          $.ajax({
+            type: "POST",
+            url: "/dataContact",
+            data: formData,
+            success: (response) => {
+              console.log("Raw response:", response.status);
+              try {
+                alert('Thank You! We have booked an appointment')
+                Toastify({
+                  text: "Thank You! We have booked an appointment",
+                  duration: 6000,
+                  gravity: "top",
+                  position: "center",
+                  style: {
+                    background: "#000000",
+                  },
+                }).showToast();
+              } catch (error) {
+                console.error("Error parsing JSON:", error);
+              }
+            },
+          });
+        });
+      });
+    </script>
+  </div>
 </div>
-
-<!-- You can embed your Google Map here using the Google Maps API -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    
-    // Initialize Google Map here
-    // Replace 'YOUR_API_KEY' with your actual Google Maps API key
-    function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 8,
-    center: { lat: 40.731, lng: -73.997 },
-  });
-    }
-   
-$(document).ready(function () {
-    $('#contact-form').submit(function (e) {
-        e.preventDefault(); 
-
-        
-        var formData = $(this).serialize();
-
-        console.log(formData);
-        $.ajax({
-            
-    type: 'POST',
-    url: '/dataContact',
-    data: formData,
-    success: (response) =>{
-        console.log('Raw response:', response); // Debugging
-        try {
-            var parsedResponse = JSON.parse(response);
-            alert("We will contact you soon!");
-            console.log('Data sent successfully:', parsedResponse);
-        } catch (error) {
-            console.error('Error parsing JSON:', error);
-        }
-    },
-});
-
-    });
-});
-</script>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script> 

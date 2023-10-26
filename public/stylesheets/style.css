@@ -386,67 +386,47 @@ p {
   color: #e75fc9;
 }
 /* Contact pages  */
-
-
-.contact-header {
-  background-color: #e75fc9;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
+input, select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }
 
-.contact-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.contact-subheading {
-  color: #e75fc9;
-}
-
-.contact-form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.contact-input {
-  flex: 1;
-  margin: 0 1rem;
-  margin-bottom: 1rem;
-}
-
-.contact-input label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.contact-input input, .contact-input textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.contact-input textarea {
-  height: 150px;
-}
-
-.contact-button {
-  background-color: #e75fc9;
-  color: #fff;
-  padding: 0.5rem 1rem;
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  font-weight: bold;
 }
 
-.contact-button:hover {
-  background-color: #333;
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #ee5fb7;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  border-radius: 5px;
+  background-image: linear-gradient(rgb(248, 174, 217),rgb(80, 45, 104));
+  padding-left:10rem;
+  padding-right: 10rem;
+  padding-top: 5rem;
+  
+}
+
+
+.contact-map{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  width: 100%;
 }

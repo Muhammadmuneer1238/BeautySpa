@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressLayout= require('express-ejs-layouts')
 
+const toastify=require('toastify-js');
 var indexRouter = require('./routes/index');
 const contactSchema=require('./model/contactmodel');
 const db=require('./connection/connection')

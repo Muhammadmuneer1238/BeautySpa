@@ -10,6 +10,11 @@ const contactSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    country:{
+        type: String,
+        required: true,
+
+    },
     message: {
         type: String,
         required: true,

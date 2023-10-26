@@ -16,15 +16,17 @@ module.exports = {
         let data = req.body
         console.log("data from ajax", data)
         return new Promise(async(resolve,reject) => {
-            console.log("Ener promise")
+            console.log("Enterd promise")
            const formdata = new contactModel({
                 name:data.name,
                 email:data.email,
+                country:data.country,
                 message:data.message
 
             })
-            formdata.save().then(()=>{
-                res.redirect('/')
+            formdata.save().then((status)=>{
+                console.log("Enterd database");
+                res.json({status})
 
             }).catch(()=>{
 
